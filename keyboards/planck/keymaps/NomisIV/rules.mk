@@ -1,0 +1,2 @@
+AUDIO_ENABLE = no
+COMBO_ENABLE = yes

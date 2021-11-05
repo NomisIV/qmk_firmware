@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 #include "keymap_swedish.h"
+#include "keymap_combo.h"
 
 /* ======== Layers ======== */
 enum planck_layers {
@@ -89,16 +90,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX, XXXXXXX, XXXXXXX, COLEMAK, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
   )
-};
-
-/* ======== Combos ======== */
-const uint16_t PROGMEM ae_combo[] = { KC_A, KC_E, COMBO_END };
-const uint16_t PROGMEM ao_combo[] = { KC_A, KC_O, COMBO_END };
-const uint16_t PROGMEM oe_combo[] = { KC_O, KC_E, COMBO_END };
-combo_t key_combos[COMBO_COUNT] = {
-  COMBO(ae_combo, SE_ADIA),
-  COMBO(ao_combo, SE_ARNG),
-  COMBO(oe_combo, SE_ODIA)
 };
 
 /* ======== Logic ======== */

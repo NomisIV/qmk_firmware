@@ -1,0 +1,37 @@
+// vim: ft=c
+
+COMB(ARNG, SE_ARNG, KC_A, KC_O) // å
+COMB(ADIA, SE_ADIA, KC_A, KC_E) // ä
+COMB(ODIA, SE_ODIA, KC_O, KC_E) // ö
+
+// Remember to make sure the chords are possible to type before putting them here
+// TODO: Create some kind of heuristics for separating the fragments from complete words
+// How about <consonant><wovel> makes a prefix, and the rest are words?
+// Another thing with two-letter macros are that they are a bit too easy to trigger
+// And another thing with complete words are that I haven't yet figured out how to shift them
+
+/* SUBS(BE_BE,	"be",		KC_B, KC_E) // eb is never used, so always type be instead */
+/* SUBS(BU_BUT,	"but",		KC_B, KC_U) */
+/* SUBS(CN_CAN,	"can",		KC_C, KC_N) */
+/* SUBS(CL_CAN,	"clear",	KC_C, KC_L) */
+/* SUBS(DA_THAT,	"that",		KC_D, KC_A) */
+/* SUBS(DE_THERE,	"there",	KC_D, KC_E) */
+/* SUBS(DI_THIS,	"this",		KC_D, KC_I) */
+/* SUBS(FO_FOR,	"for",		KC_F, KC_O) */
+/* SUBS(FU_FUL,	"ful",		KC_F, KC_U) */
+/* SUBS(GE_GET,	"get",		KC_G, KC_E) */
+/* SUBS(GI_GIVE,	"give",		KC_G, KC_I) */
+/* SUBS(IB_IBLE,	"ible",		KC_I, KC_B) */
+/* SUBS(IG_ING,	"ing",		KC_I, KC_G) */
+/* SUBS(NE_NESS,	"ness",		KC_N, KC_E) */
+/* SUBS(SI_SION,	"sion", 	KC_S, KC_I) */
+/* SUBS(TI_SION,	"tion", 	KC_T, KC_I) */
+/* SUBS(WA_WARE,	"ware",		KC_W, KC_A) */
+/* SUBS(WE_WHERE,	"where",	KC_W, KC_E) */
+/* SUBS(WL_WILL,	"will",		KC_W, KC_L) */
+/* SUBS(WY_WHY,	"why",		KC_W, KC_Y) */
+/* SUBS(YU_YOU,	"you",		KC_Y, KC_U) */
+
+SUBS(HED_HEAD,		"head",		KC_H, KC_E, KC_D)
+SUBS(NVR_NEVER,		"never",	KC_N, KC_V, KC_R)
+SUBS(THO_THOUGH,	"though",	KC_T, KC_H, KC_O)

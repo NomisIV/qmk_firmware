@@ -111,19 +111,24 @@ const rgblight_segment_t* const PROGMEM rgb_layers[] = {
   [COLOR_COUNT] = NULL
 };
 
+// When the default layer changes
 layer_state_t default_layer_state_set_user(layer_state_t state) {
+  // Change the underglow color to match the layer
   rgblight_set_layer_state(COLEMAK_COLOR, layer_state_cmp(state, COLEMAK_LAYER));
   rgblight_set_layer_state(QWERTY_COLOR, layer_state_cmp(state, QWERTY_LAYER));
   return state;
 }
 
+// When the activated layers change
 layer_state_t layer_state_set_user(layer_state_t state) {
   state = update_tri_layer_state(state, LOWER_LAYER, RAISE_LAYER, META_LAYER);
   rgblight_set_layer_state(META_COLOR, layer_state_cmp(state, META_LAYER));
   return state;
 }
 
+// When the keyboard starts
 void keyboard_post_init_user(void) {
+  // Initialize colors
   rgblight_layers = rgb_layers;
 
   set_single_persistent_default_layer(COLEMAK_LAYER); // Always default to colemak

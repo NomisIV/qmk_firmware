@@ -25,7 +25,7 @@ enum planck_layers {
 #define SHIFT   LM(SHIFT_LAYER, MOD_LSFT) // Momentarily move to SHIFT_LAYER and activate modifier MOD_LSFT
 #define CTL_TAB MT(MOD_LCTL, KC_TAB)      // Left control when held, tab when tapped
 
-/* ======== Laoyout ======== */
+/* ======== Layout ======== */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE_LAYER] = LAYOUT_planck_grid(
     KC_ESC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_BSPC,

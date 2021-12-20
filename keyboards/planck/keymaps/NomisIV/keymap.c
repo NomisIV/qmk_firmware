@@ -10,6 +10,7 @@ enum planck_layers {
   PSI_LAYER,
   QWERTY_LAYER,
   GAMMA_LAYER,
+  DELTA_LAYER,
   LOWER_LAYER,
   RAISE_LAYER,
   META_LAYER
@@ -20,6 +21,7 @@ enum planck_layers {
 #define QWERTY  DF(QWERTY_LAYER)          // Switch default layer to QWERTY_LAYER
 #define PSI     MO(PSI_LAYER)             // Momentarily move to PSI_LAYER
 #define GAMMA   MO(GAMMA_LAYER)           // Momentarily move to GAMMA_LAYER
+#define DELTA   MO(DELTA_LAYER)           // Momentarily move to DELTA_LAYER
 #define LOWER   MO(LOWER_LAYER)           // Momentarily move to LOWER_LAYER
 #define RAISE   MO(RAISE_LAYER)           // Momentarily move to RAISE_LAYRE
 #define SHIFT   LM(SHIFT_LAYER, MOD_LSFT) // Momentarily move to SHIFT_LAYER and activate modifier MOD_LSFT
@@ -60,14 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, SE_Q   , SE_W   , SE_E   , SE_R   , SE_T   , SE_Y   , SE_U   , SE_I   , SE_O   , SE_P   , _______,
     KC_TAB , SE_A   , SE_S   , SE_D   , SE_F   , SE_G   , SE_H   , SE_J   , SE_K   , SE_L   , SE_SCLN, _______,
     KC_LSFT, SE_Z   , SE_X   , SE_C   , SE_V   , SE_B   , SE_N   , SE_M   , SE_COMM, SE_DOT , SE_QUOT, KC_RSFT,
-    KC_LCTL, KC_LGUI, _______, GAMMA  , _______, KC_SPC , _______, _______, _______, _______, _______, _______
-  ),
-
-  [GAMMA_LAYER] = LAYOUT_planck_grid(
-    XXXXXXX, SE_1   , SE_2   , SE_3   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    XXXXXXX, SE_4   , SE_5   , SE_6   , SE_0   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-    _______, SE_7   , SE_8   , SE_9   , SE_DOT , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+    KC_LCTL, KC_LGUI, _______, DELTA  , GAMMA  , KC_SPC , _______, _______, _______, _______, _______, _______
   ),
 
   [LOWER_LAYER] = LAYOUT_planck_grid(
@@ -81,6 +76,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX, KC_F1  , KC_F2  , KC_F3  , KC_F4  , XXXXXXX, XXXXXXX, SE_1   , SE_2   , SE_3   , SE_COLN, XXXXXXX,
     XXXXXXX, KC_F5  , KC_F6  , KC_F7  , KC_F8  , XXXXXXX, XXXXXXX, SE_4   , SE_5   , SE_6   , SE_0   , XXXXXXX,
     _______, KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, XXXXXXX, SE_7   , SE_8   , SE_9   , SE_DOT , _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+  ),
+
+  [GAMMA_LAYER] = LAYOUT_planck_grid(
+    XXXXXXX, SE_1   , SE_2   , SE_3   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, SE_4   , SE_5   , SE_6   , SE_0   , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    _______, SE_7   , SE_8   , SE_9   , SE_DOT , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+  ),
+
+  [DELTA_LAYER] = LAYOUT_planck_grid(
+    XXXXXXX, KC_F1  , KC_F2  , KC_F3  , KC_F4  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    XXXXXXX, KC_F5  , KC_F6  , KC_F7  , KC_F8  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+    _______, KC_F9  , KC_F10 , KC_F11 , KC_F12 , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
 
@@ -124,6 +133,18 @@ layer_state_t layer_state_set_user(layer_state_t state) {
   state = update_tri_layer_state(state, LOWER_LAYER, RAISE_LAYER, META_LAYER);
   rgblight_set_layer_state(META_COLOR, layer_state_cmp(state, META_LAYER));
   return state;
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch(keycode) {
+    case GAMMA:
+      if(record->event.pressed)
+        layer_on(LOWER_LAYER);
+      else
+        layer_off(LOWER_LAYER);
+      return false;
+  }
+  return true;
 }
 
 // When the keyboard starts
